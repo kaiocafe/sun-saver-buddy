@@ -5,16 +5,16 @@
 
 ![IMG_C4AA8B847AFC-1](https://github.com/user-attachments/assets/8fa12fcf-e505-47e2-904e-2994c91e6921)
 
-
+# Calculator Page
 ![IMG_5D4C49AD4233-1](https://github.com/user-attachments/assets/3e755fc8-2bd7-4ae1-b399-236f805b769c)
 
 
 ![IMG_CEE1F71A5749-1](https://github.com/user-attachments/assets/28753ead-d11a-4d17-b44c-e3921aac7d31)
 
-
+# About Page
 ![IMG_6D16BD7A2D71-1](https://github.com/user-attachments/assets/6ee915cd-87c9-482b-a206-ae1ae36b76df)
 
-
+# Contac Page
 ![IMG_790A1DCDA435-1](https://github.com/user-attachments/assets/922197e1-10f9-4fd0-8854-0647487072b8)
 
 
