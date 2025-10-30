@@ -14,7 +14,7 @@
 # About Page
 ![IMG_6D16BD7A2D71-1](https://github.com/user-attachments/assets/6ee915cd-87c9-482b-a206-ae1ae36b76df)
 
-# Contac Page
+# Contact Page
 ![IMG_790A1DCDA435-1](https://github.com/user-attachments/assets/922197e1-10f9-4fd0-8854-0647487072b8)
 
 
