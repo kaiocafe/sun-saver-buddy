@@ -1,4 +1,13 @@
+## Identificação do grupo
 
+| RA         | Nome                          | E-mail                                                                      |
+| ---------- | ----------------------------- | --------------------------------------------------------------------------- |
+| **248843** | Giane Pereira Zein            | [giane.zein.1@gmail.com](mailto:giane.zein.1@gmail.com)                     |
+| **249561** | João Gabriel Oliveira de Lara | [joaogabrieloliveira927@gmail.com](mailto:joaogabrieloliveira927@gmail.com) |
+| **223715** | Gabriel de Souza Pereira      | [gsouzap10@gmail.com](mailto:gsouzap10@gmail.com)                           |
+| **249303** | Saymon Lima dos Santos        | [saymonlima2019@outlook.com](mailto:saymonlima2019@outlook.com)             |
+| **223879** | Kaio Café Santos              | [kaiocafe10@gmail.com](mailto:kaiocafe10@gmail.com)                         |
+| **249588** | Guilherme Gravalos Morais     | [249588@facens.com](mailto:249588@facens.com)                               |
 
 
 # Home Page
