@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Calculator, Zap, DollarSign, Leaf, Clock, Download, Bolt, TrendingUp, Wallet } from "lucide-react";
+import { useForm, Controller } from "react-hook-form";
+import { Calculator, Zap, DollarSign, Leaf, Clock, Download, Bolt, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
@@ -34,7 +35,7 @@ const irradianceByState: Record<string, number> = {
 };
 
 const Simulator = () => {
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, control } = useForm<FormData>();
   const [results, setResults] = useState<Results | null>(null);
 
   const calculateSavings = (data: FormData) => {
@@ -134,12 +135,46 @@ const Simulator = () => {
                 
                 <div>
                   <Label htmlFor="state">Estado</Label>
-                  <Input
-                    id="state"
-                    type="text"
-                    placeholder="Ex: São Paulo"
-                    {...register("state", { required: true })}
-                    className="mt-2"
+                  <Controller
+                    name="state"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <Select onValueChange={field.onChange} value={field.value}>
+                        <SelectTrigger className="mt-2">
+                          <SelectValue placeholder="Selecione seu estado" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-background z-50">
+                          <SelectItem value="AC">Acre (AC)</SelectItem>
+                          <SelectItem value="AL">Alagoas (AL)</SelectItem>
+                          <SelectItem value="AP">Amapá (AP)</SelectItem>
+                          <SelectItem value="AM">Amazonas (AM)</SelectItem>
+                          <SelectItem value="BA">Bahia (BA)</SelectItem>
+                          <SelectItem value="CE">Ceará (CE)</SelectItem>
+                          <SelectItem value="DF">Distrito Federal (DF)</SelectItem>
+                          <SelectItem value="ES">Espírito Santo (ES)</SelectItem>
+                          <SelectItem value="GO">Goiás (GO)</SelectItem>
+                          <SelectItem value="MA">Maranhão (MA)</SelectItem>
+                          <SelectItem value="MT">Mato Grosso (MT)</SelectItem>
+                          <SelectItem value="MS">Mato Grosso do Sul (MS)</SelectItem>
+                          <SelectItem value="MG">Minas Gerais (MG)</SelectItem>
+                          <SelectItem value="PA">Pará (PA)</SelectItem>
+                          <SelectItem value="PB">Paraíba (PB)</SelectItem>
+                          <SelectItem value="PR">Paraná (PR)</SelectItem>
+                          <SelectItem value="PE">Pernambuco (PE)</SelectItem>
+                          <SelectItem value="PI">Piauí (PI)</SelectItem>
+                          <SelectItem value="RJ">Rio de Janeiro (RJ)</SelectItem>
+                          <SelectItem value="RN">Rio Grande do Norte (RN)</SelectItem>
+                          <SelectItem value="RS">Rio Grande do Sul (RS)</SelectItem>
+                          <SelectItem value="RO">Rondônia (RO)</SelectItem>
+                          <SelectItem value="RR">Roraima (RR)</SelectItem>
+                          <SelectItem value="SC">Santa Catarina (SC)</SelectItem>
+                          <SelectItem value="SP">São Paulo (SP)</SelectItem>
+                          <SelectItem value="SE">Sergipe (SE)</SelectItem>
+                          <SelectItem value="TO">Tocantins (TO)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    )}
                   />
                 </div>
 
@@ -242,21 +277,6 @@ const Simulator = () => {
                     </p>
                     <p className="text-sm text-muted-foreground mt-2">
                       custo do sistema
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="card-hover shadow-medium border-2 border-primary/20 lg:col-span-3">
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <TrendingUp className="h-10 w-10 text-primary" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-muted-foreground mb-2">Economia Total em 25 Anos</h3>
-                    <p className="text-4xl font-bold text-primary">
-                      R$ {results.totalSavings25Years.toFixed(2)}
-                    </p>
-                    <p className="text-sm text-muted-foreground mt-2">
-                      lucro líquido após recuperar investimento
                     </p>
                   </CardContent>
                 </Card>
