@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Calculator, Zap, DollarSign, Leaf, Clock, Download } from "lucide-react";
+import { Calculator, Zap, DollarSign, Leaf, Clock, Download, Bolt, TrendingUp, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -197,6 +197,66 @@ const Simulator = () => {
                     </p>
                     <p className="text-sm text-muted-foreground mt-2">
                       tempo de retorno
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="card-hover shadow-medium border-2 border-primary/20">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <Bolt className="h-10 w-10 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-muted-foreground mb-2">Geração Mensal</h3>
+                    <p className="text-3xl font-bold text-primary">
+                      {results.monthlyGeneration.toFixed(0)} kWh
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      energia gerada por mês
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="card-hover shadow-medium border-2 border-primary/20">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <Zap className="h-10 w-10 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-muted-foreground mb-2">Tamanho do Sistema</h3>
+                    <p className="text-3xl font-bold text-primary">
+                      {results.systemSize.toFixed(2)} kWp
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      potência instalada
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="card-hover shadow-medium border-2 border-primary/20">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <Wallet className="h-10 w-10 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-muted-foreground mb-2">Investimento Total</h3>
+                    <p className="text-3xl font-bold text-primary">
+                      R$ {results.systemCost.toFixed(2)}
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      custo do sistema
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="card-hover shadow-medium border-2 border-primary/20 lg:col-span-3">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <TrendingUp className="h-10 w-10 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-muted-foreground mb-2">Economia Total em 25 Anos</h3>
+                    <p className="text-4xl font-bold text-primary">
+                      R$ {results.totalSavings25Years.toFixed(2)}
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      lucro líquido após recuperar investimento
                     </p>
                   </CardContent>
                 </Card>
