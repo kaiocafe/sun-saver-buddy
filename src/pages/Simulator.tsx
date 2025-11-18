@@ -22,39 +22,48 @@ interface Results {
   co2Avoided: number;
   paybackYears: number;
   totalSavings25Years: number;
+  systemSize: number;
+  systemCost: number;
 }
+
+const irradianceByState: Record<string, number> = {
+  "AC": 4.8, "AL": 5.5, "AP": 4.7, "AM": 4.5, "BA": 5.9, "CE": 5.8, "DF": 5.7,
+  "ES": 5.3, "GO": 5.7, "MA": 5.6, "MT": 5.7, "MS": 5.6, "MG": 5.7, "PA": 4.8,
+  "PB": 5.7, "PR": 4.5, "PE": 5.7, "PI": 5.9, "RJ": 4.9, "RN": 5.7, "RS": 4.2,
+  "RO": 4.7, "RR": 5.1, "SC": 4.3, "SE": 5.6, "SP": 4.7, "TO": 5.7
+};
 
 const Simulator = () => {
   const { register, handleSubmit } = useForm<FormData>();
   const [results, setResults] = useState<Results | null>(null);
 
   const calculateSavings = (data: FormData) => {
-    // Simplified calculation - in production, use real irradiance data by state
-    const irradiance = 5.5; // Average daily sun hours in Brazil
-    const systemEfficiency = 0.8;
-    const losses = 0.15;
-    
-    // Estimate system size based on consumption
-    const monthlyGeneration = data.consumption;
-    const systemSize = data.consumption / (irradiance * 30 * systemEfficiency);
-    
-    // Financial calculations
+    const stateKey = data.state.toUpperCase().trim();
+    const irradiance = irradianceByState[stateKey] || 5.5;
+
+    const losses = 0.15; // perdas padrão
+    const energyPerKWp = irradiance * 30 * (1 - losses); // kWh/mês por kWp
+    const systemSize = data.consumption / energyPerKWp; // kWp
+    const systemCost = systemSize * 4500; // custo médio Brasil
+
+    const monthlyGeneration = energyPerKWp * systemSize;
     const monthlySavings = monthlyGeneration * data.tariff;
     const annualSavings = monthlySavings * 12;
-    const systemCost = systemSize * 4500; // R$ per kWp
+
     const paybackYears = systemCost / annualSavings;
-    const totalSavings25Years = (annualSavings * 25) - systemCost;
-    
-    // Environmental calculations
-    const co2Avoided = (monthlyGeneration * 12 * 0.084); // kg CO2 per kWh
-    
+    const totalSavings25Years = annualSavings * 25 - systemCost;
+
+    const co2Avoided = monthlyGeneration * 12 * 0.084;
+
     setResults({
       monthlyGeneration,
       monthlySavings,
       annualSavings,
       co2Avoided,
       paybackYears,
-      totalSavings25Years
+      totalSavings25Years,
+      systemSize,
+      systemCost
     });
   };
 
@@ -63,7 +72,7 @@ const Simulator = () => {
   };
 
   const chartData = results ? [
-    { name: 'Sem Solar', value: results.monthlySavings },
+    { name: 'Sem Solar', value: results.monthlySavings + (results.monthlySavings * 0.05) },
     { name: 'Com Solar', value: results.monthlySavings * 0.05 }
   ] : [];
 
